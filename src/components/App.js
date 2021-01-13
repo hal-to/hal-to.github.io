@@ -1,11 +1,16 @@
-import './App.scss';
+import "../scss/main.scss";
+import Home from "./Home";
+import Footer from "./ui/Footer";
+import Header from "./ui/Header";
 
 function App() {
   return (
-    <div className="App">      
-      <header className="App-header">
-        할투 맵!!
-      </header>
+    <div className="App">
+      <Header />
+
+      <Home />
+
+      <Footer />
     </div>
   );
 }

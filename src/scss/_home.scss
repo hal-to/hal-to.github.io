@@ -1,0 +1,7 @@
+.home {
+    background-color: $color-tertiary-dark;
+
+    display: grid;
+    grid-template-columns: 40rem 1fr;
+    align-content: start;
+}
