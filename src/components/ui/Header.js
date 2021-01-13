@@ -1,21 +1,24 @@
 import React, { useState } from "react";
-import { getCategoryMap } from "../util/CategoryUtil";
+import { getCategoryMap as getCategories } from "../util/CategoryUtil";
 import { getVideos } from "../util/YoutubeUtil";
 
 const Header = () => {
   const VIDEOS_LS = "videos";
+  const CATEGORIES_LS = "categories";
   const LAST_FETCH_DATE_LS = "last_fetch";
   const [isImporting, setIsImporting] = useState(false);
 
   const videos = JSON.parse(localStorage.getItem(VIDEOS_LS)) || [];
   const lastFetchDateTemp = localStorage.getItem(LAST_FETCH_DATE_LS) || "0";
   const lastFetchDate = new Date(parseInt(lastFetchDateTemp));
-  const categoryMap = getCategoryMap(videos);
-  console.log(categoryMap);
+  const categories = JSON.parse(localStorage.getItem(CATEGORIES_LS)) || {};
+  console.log(categories);
 
   const loadAndSaveSheet = async () => {
     setIsImporting(true);
     let videos = await getVideos();
+    const categories = getCategories(videos);
+    localStorage.setItem(CATEGORIES_LS, JSON.stringify(categories));
     localStorage.setItem(VIDEOS_LS, JSON.stringify(videos));
     localStorage.setItem(LAST_FETCH_DATE_LS, Date.now());
     setIsImporting(false);

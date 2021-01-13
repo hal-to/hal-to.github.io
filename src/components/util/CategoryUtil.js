@@ -1,20 +1,26 @@
 export function getCategoryMap(videos) {
-  const cat_map = new Map();
+  const catMap = new Map();
   videos.forEach((video) => {
-    const cat_big = video.cat_big;
-    const cat_sm_list = video.cat_sm;
-    if (!cat_map.has(cat_big)) {
+    const catBig = video.cat_big;
+    const catSmallList = video.cat_sm_list;
+    if (!catMap.has(catBig)) {
       const curSet = new Set();
-      cat_sm_list.forEach((cat_sm) => {
-        curSet.add(cat_sm);
+      catSmallList.forEach((word) => {
+        curSet.add(word);
       });
-      cat_map.set(cat_big, curSet);
+      catMap.set(catBig, curSet);
     } else {
-      const curSet = cat_map.get(cat_big);
-      cat_sm_list.forEach((cat_sm) => {
-        curSet.add(cat_sm);
+      const curSet = catMap.get(catBig);
+      catSmallList.forEach((word) => {
+        curSet.add(word);
       });
     }
   });
-  return cat_map;
+
+  let catObj = {}
+  catMap.forEach((value, key, map) => {
+    console.log(key, value);
+    catObj[key] = [...value];
+  })
+  return catObj;
 }
