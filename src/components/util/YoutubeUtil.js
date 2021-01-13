@@ -56,7 +56,7 @@ export async function getVideos() {
     const video = {
       num: numCell.value,
       cat_big: categoryBigCell.value,
-      cat_sm: smallCategories,
+      cat_sm_list: smallCategories,
       title: titleCell.value,
       link: hyperlink,
       id: id,
