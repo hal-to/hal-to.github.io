@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getCategoryMap } from "../util/CategoryUtil";
 import { getVideos } from "../util/YoutubeUtil";
 
 const Header = () => {
@@ -9,6 +10,8 @@ const Header = () => {
   const videos = JSON.parse(localStorage.getItem(VIDEOS_LS)) || [];
   const lastFetchDateTemp = localStorage.getItem(LAST_FETCH_DATE_LS) || "0";
   const lastFetchDate = new Date(parseInt(lastFetchDateTemp));
+  const categoryMap = getCategoryMap(videos);
+  console.log(categoryMap);
 
   const loadAndSaveSheet = async () => {
     setIsImporting(true);

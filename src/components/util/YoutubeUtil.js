@@ -39,6 +39,14 @@ export async function getVideos() {
     const numCell = sheet.getCell(row, 0);
     const categoryBigCell = sheet.getCell(row, 1);
     const categorySmallCell = sheet.getCell(row, 2);
+    let smallCategories = [];
+    if (categorySmallCell.value !== null) {
+      const words = categorySmallCell.value
+        .split("+")
+        .map((item) => item.trim());
+      smallCategories = words;
+    }
+
     const titleCell = sheet.getCell(row, 3);
     if (titleCell.value === null) continue;
     const hyperlink = titleCell.hyperlink;
@@ -48,7 +56,7 @@ export async function getVideos() {
     const video = {
       num: numCell.value,
       cat_big: categoryBigCell.value,
-      cat_sm: categorySmallCell.value,
+      cat_sm: smallCategories,
       title: titleCell.value,
       link: hyperlink,
       id: id,
