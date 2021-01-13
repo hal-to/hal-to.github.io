@@ -1,41 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { getVideos } from "../util/YoutubeUtil";
 
 const Header = () => {
-  // It's all right. It's restricted by domain.
-  const K = "AIzaSyA0_136gWrkqUfV5t25yi4rKWQpEpXDl9c";
+  const VIDEOS_LS = "videos";
+  const LAST_FETCH_DATE_LS = "last_fetch";
+  const [isImporting, setIsImporting] = useState(false);
 
-  // "https://docs.google.com/spreadsheets/d/1wPR2CCImrk6Qb8jwlGy2_RfDJu5PwY18POrJ3UR1sts/edit?fbclid=IwAR3XbNYzBo6ITLkMG-C_JXc7-IfUIIFxyFb1mDIZuPjUQKD0afaXNiCJ2As#gid=1577519440";
-  const SHEET_ID = "1wPR2CCImrk6Qb8jwlGy2_RfDJu5PwY18POrJ3UR1sts"; // https://han.gl/49BQk
-  const SHEET_TITLE = "강환국 할투 채널";
+  const videos = JSON.parse(localStorage.getItem(VIDEOS_LS)) || [];
+  const lastFetchDateTemp = localStorage.getItem(LAST_FETCH_DATE_LS) || "0";
+  const lastFetchDate = new Date(parseInt(lastFetchDateTemp));
 
-  const { GoogleSpreadsheet } = require("google-spreadsheet");
-  const loadSheet = async () => {
-    console.log("loadSheet()", SHEET_ID);
-
-    // Initialize the sheet - doc ID is the long id in the sheets URL
-    const doc = new GoogleSpreadsheet(SHEET_ID);
-    doc.useApiKey(K);
-
-    await doc.loadInfo(); // loads document properties and worksheets
-    console.log(doc.title);
-
-    const sheet = doc.sheetsByTitle[SHEET_TITLE];
-    console.log(sheet.title, sheet.rowCount);
-    const rowCount = sheet.rowCount;
-
-    await sheet.loadCells(`A2:F${rowCount}`);
-
-    for (let row = 1; row < rowCount; row++) {
-      const numCell = sheet.getCell(row, 0);
-      const categoryBigCell = sheet.getCell(row, 1);
-      const categorySmallCell = sheet.getCell(row, 2);
-      const titleCell = sheet.getCell(row, 3);
-      if (titleCell.value === null) continue;
-      const hyperlink = titleCell.hyperlink;
-      const summaryCell = sheet.getCell(row, 4);
-      const dateCell = sheet.getCell(row, 5);
-      console.log(numCell.value, titleCell.value, hyperlink, dateCell.value);
-    }
+  const loadAndSaveSheet = async () => {
+    setIsImporting(true);
+    let videos = await getVideos();
+    localStorage.setItem(VIDEOS_LS, JSON.stringify(videos));
+    localStorage.setItem(LAST_FETCH_DATE_LS, Date.now());
+    setIsImporting(false);
   };
 
   return (
@@ -47,8 +27,16 @@ const Header = () => {
       <div className="header-nav">
         <button>할투 영상</button>
         <button>추천 사이트</button>
-        <button>about</button>
-        <button onClick={loadSheet}>갱신</button>
+        <button>어바웃</button>
+        <button onClick={loadAndSaveSheet}>갱신</button>
+        {isImporting ? (
+          <div>fetching...</div>
+        ) : (
+          <div>
+            <p>{videos.length} videos are fetched</p>
+            <p>last fetch: {lastFetchDate.toLocaleString()}</p>
+          </div>
+        )}
       </div>
     </header>
   );
