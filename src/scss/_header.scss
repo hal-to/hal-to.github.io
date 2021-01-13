@@ -1,5 +1,12 @@
-.header {    
-    background-color: $color-grey-light-1;
-    display: block;
-    height: 20rem;
+.header {
+  background-image: url(../img/header_bg.png);
+  background-color: $color-bg-blue;
+  background-size: auto 20rem;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  height: 30rem;
+
+  display: grid;
+  padding: 3rem;
+  grid-template-columns: 1fr max-content;
 }

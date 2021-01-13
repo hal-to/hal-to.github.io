@@ -1,0 +1,19 @@
+.heading-1 {
+  font-size: 4rem;
+  &--light {
+    color: $color-grey-light-1;
+  }
+  &--dark {
+    color: $color-grey-dark-1;
+  }
+}
+
+.heading-2 {
+  font-size: 3rem;
+  &--light {
+    color: $color-grey-light-2;
+  }
+  &--dark {
+    color: $color-grey-dark-2;
+  }
+}
