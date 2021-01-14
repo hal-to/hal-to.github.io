@@ -21,6 +21,7 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
       button.classList.remove("selected");
     });
     setSmallCats(new Set());
+    setSelectedSmCat(new Set());
   }
 
   function allBig() {
@@ -34,7 +35,7 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
       smallCategoryList.forEach((small) => tempSmallSet.add(small));
     }
     setSmallCats(tempSmallSet);
-    console.log(tempSmallSet.size);
+    setSelectedSmCat(tempSmallSet);
   }
 
   function toggleBig(e) {
@@ -65,6 +66,37 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
     setSelectedSmCat(tempSelectedSmCat);
   }
 
+
+  function clearSmall() {
+    const selectedSmallBtn = document.querySelectorAll(
+      ".category-small .btn-cat.selected"
+    );
+    selectedSmallBtn.forEach((button) => {
+      button.classList.remove("selected");
+    });
+    setSelectedSmCat(new Set());
+  }
+
+  function allSmall() {
+    const SmallButton = document.querySelectorAll(".category-small .btn-cat");
+    SmallButton.forEach((button) => {
+      button.classList.add("selected");
+    });    
+    setSelectedSmCat(smallCats);
+  }
+
+  function toggleSmall(e) {
+    const smallCat = e.target.innerText;
+    const tempSelectedSmCat = new Set(selectedSmCat);
+    if (e.target.classList.contains("selected")) {
+      tempSelectedSmCat.delete(smallCat);
+    } else {
+      tempSelectedSmCat.add(smallCat);      
+    }
+    e.target.classList.toggle("selected");
+    setSelectedSmCat(tempSelectedSmCat);
+  }
+
   return (
     <section className="categories">
       <div className="category-big">
@@ -77,12 +109,12 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
           </button>
         ))}
       </div>
-      <div>
+      <div className="category-small">
         <h2>카테고리(소)</h2>
-        <button>Clear</button>
-        <button>Select All</button>
+        <button onClick={clearSmall}>Clear</button>
+        <button onClick={allSmall}>Select All</button>
         {Array.from(smallCats).map((smallCategory) => (
-          <button key={smallCategory} className="btn-cat">
+          <button key={smallCategory} onClick={toggleSmall} className="btn-cat selected">
             {smallCategory}
           </button>
         ))}
