@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getCategories } from "../util/CategoryUtil";
 
-const CATEGORIES_LS = "categories";
-const categories = JSON.parse(localStorage.getItem(CATEGORIES_LS)) || {};
-let selectedItem = [];
-let selectedSmallItems = [];
-
-const Categories = () => {
+const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
   const [smallCats, setSmallCats] = useState(new Set());
+  const [categories, setCategories] = useState({});
+  const [selectedBigCat, setSelectedBigCat] = useState(new Set());
+
+  useEffect(() => {
+    console.log("Categories useEffect()");
+    const tempCategories = getCategories(videos);
+    setCategories(tempCategories);
+    console.log(tempCategories);
+  }, [videos]);
 
   function clearBig() {
     const selectedBigBtn = document.querySelectorAll(
@@ -25,7 +30,7 @@ const Categories = () => {
     });
 
     const tempSmallSet = new Set();
-    for (const [key, smallCategoryList] of Object.entries(categories)) {
+    for (const [_, smallCategoryList] of Object.entries(categories)) {
       smallCategoryList.forEach((small) => tempSmallSet.add(small));
     }
     setSmallCats(tempSmallSet);
@@ -33,32 +38,31 @@ const Categories = () => {
   }
 
   function toggleBig(e) {
-    console.log("toggle", e);
     const word = e.target.innerText;
     const tempSmallSet = new Set(smallCats);
+    const tempSelectedSmCat = new Set(selectedSmCat);
+    const tempSelectedBigCat = new Set(selectedBigCat);
     if (e.target.classList.contains("selected")) {
-      const idx = selectedItem.indexOf(word);
-      if (idx > -1) selectedItem.splice(idx, 1);
+      tempSelectedBigCat.delete(word);
 
       const smallCategoryList = categories[word];
       smallCategoryList.forEach((small) => {
         tempSmallSet.delete(small);
-        const idx = selectedSmallItems.indexOf(small);
-        if (idx > -1) selectedSmallItems.splice(idx, 1);
+        tempSelectedSmCat.delete(small);
       });
     } else {
-      selectedItem.push(word);
+      tempSelectedBigCat.add(word);
 
       const smallCategoryList = categories[word];
       smallCategoryList.forEach((small) => {
         tempSmallSet.add(small);
-        selectedSmallItems.push(small);
+        tempSelectedSmCat.add(small);
       });
     }
     e.target.classList.toggle("selected");
-    console.log(selectedItem);
-    console.log(tempSmallSet);
+    setSelectedBigCat(tempSelectedBigCat);
     setSmallCats(tempSmallSet);
+    setSelectedSmCat(tempSelectedSmCat);
   }
 
   return (

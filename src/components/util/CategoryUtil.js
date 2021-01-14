@@ -1,4 +1,4 @@
-export function getCategoryMap(videos) {
+export function getCategories(videos) {
   const catMap = new Map();
   videos.forEach((video) => {
     const catBig = video.cat_big;
@@ -19,7 +19,6 @@ export function getCategoryMap(videos) {
 
   let catObj = {}
   catMap.forEach((value, key, map) => {
-    console.log(key, value);
     catObj[key] = [...value];
   })
   return catObj;

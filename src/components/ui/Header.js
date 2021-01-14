@@ -1,28 +1,30 @@
-import React, { useState } from "react";
-import { getCategoryMap as getCategories } from "../util/CategoryUtil";
+import React, { useEffect, useState } from "react";
 import { getVideos } from "../util/YoutubeUtil";
 
-const Header = () => {
-  const VIDEOS_LS = "videos";
-  const CATEGORIES_LS = "categories";
-  const LAST_FETCH_DATE_LS = "last_fetch";
+const Header = ({ videos, setVideos }) => {
   const [isImporting, setIsImporting] = useState(false);
+  const [lastFetchDate, setLastFetchDate] = useState("N/A");
 
-  const videos = JSON.parse(localStorage.getItem(VIDEOS_LS)) || [];
-  const lastFetchDateTemp = localStorage.getItem(LAST_FETCH_DATE_LS) || "0";
-  const lastFetchDate = new Date(parseInt(lastFetchDateTemp));
-  const categories = JSON.parse(localStorage.getItem(CATEGORIES_LS)) || {};
-  console.log(categories);
+  const VIDEOS_LS = "videos";
+  const LAST_FETCH_DATE_LS = "last_fetch";
 
   const loadAndSaveSheet = async () => {
     setIsImporting(true);
-    let videos = await getVideos();
-    const categories = getCategories(videos);
-    localStorage.setItem(CATEGORIES_LS, JSON.stringify(categories));
-    localStorage.setItem(VIDEOS_LS, JSON.stringify(videos));
+    let remoteVideos = await getVideos();
+    localStorage.setItem(VIDEOS_LS, JSON.stringify(remoteVideos));
     localStorage.setItem(LAST_FETCH_DATE_LS, Date.now());
+    setVideos(remoteVideos);
     setIsImporting(false);
   };
+
+  useEffect(() => {
+    console.log("Header mounted");
+    const localVideos = JSON.parse(localStorage.getItem(VIDEOS_LS)) || [];
+    const lastFetchDateStr = localStorage.getItem(LAST_FETCH_DATE_LS) || "0";
+    const lastFetchDateTemp = new Date(parseInt(lastFetchDateStr));
+    setLastFetchDate(lastFetchDateTemp);
+    setVideos(localVideos);    
+  }, []);
 
   return (
     <header className="header">
