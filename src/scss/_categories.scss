@@ -1,19 +1,9 @@
 .category-big {
+  background-color: $color-primary;
   padding: 3rem;
-  .btn-cat {
-    padding: 0.4rem;
-  }
-  .selected {
-    background-color: $color-secondary-light;
-  }
 }
 
 .category-small {
+  background-color: $color-bg-yellow;
   padding: 3rem;
-  .btn-cat {
-    padding: 0.4rem;
-  }
-  .selected {
-    background-color: $color-secondary-dark;
-  }
 }

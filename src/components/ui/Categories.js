@@ -15,10 +15,10 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
 
   function clearBig() {
     const selectedBigBtn = document.querySelectorAll(
-      ".category-big .btn-cat.selected"
+      ".category-big .btn-cat.btn-cat--selected"
     );
     selectedBigBtn.forEach((button) => {
-      button.classList.remove("selected");
+      button.classList.remove("btn-cat--selected");
     });
     setSmallCats(new Set());
     setSelectedSmCat(new Set());
@@ -27,7 +27,7 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
   function allBig() {
     const bigButton = document.querySelectorAll(".category-big .btn-cat");
     bigButton.forEach((button) => {
-      button.classList.add("selected");
+      button.classList.add("btn-cat--selected");
     });
 
     const tempSmallSet = new Set();
@@ -43,7 +43,7 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
     const tempSmallSet = new Set(smallCats);
     const tempSelectedSmCat = new Set(selectedSmCat);
     const tempSelectedBigCat = new Set(selectedBigCat);
-    if (e.target.classList.contains("selected")) {
+    if (e.target.classList.contains("btn-cat--selected")) {
       tempSelectedBigCat.delete(word);
 
       const smallCategoryList = categories[word];
@@ -60,7 +60,7 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
         tempSelectedSmCat.add(small);
       });
     }
-    e.target.classList.toggle("selected");
+    e.target.classList.toggle("btn-cat--selected");
     setSelectedBigCat(tempSelectedBigCat);
     setSmallCats(tempSmallSet);
     setSelectedSmCat(tempSelectedSmCat);
@@ -68,10 +68,10 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
 
   function clearSmall() {
     const selectedSmallBtn = document.querySelectorAll(
-      ".category-small .btn-cat.selected"
+      ".category-small .btn-cat.btn-cat--selected"
     );
     selectedSmallBtn.forEach((button) => {
-      button.classList.remove("selected");
+      button.classList.remove("btn-cat--selected");
     });
     setSelectedSmCat(new Set());
   }
@@ -79,7 +79,7 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
   function allSmall() {
     const smallButton = document.querySelectorAll(".category-small .btn-cat");
     smallButton.forEach((button) => {
-      button.classList.add("selected");
+      button.classList.add("btn-cat--selected");
     });
     setSelectedSmCat(smallCats);
   }
@@ -92,7 +92,7 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
     } else {
       tempSelectedSmCat.add(smallCat);
     }
-    e.target.classList.toggle("selected");
+    e.target.classList.toggle("btn-cat--selected");
     setSelectedSmCat(tempSelectedSmCat);
   }
 
@@ -116,7 +116,7 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
           <button
             key={smallCategory}
             onClick={toggleSmall}
-            className="btn-cat selected"
+            className="btn-cat btn-cat--selected"
           >
             {smallCategory}
           </button>
