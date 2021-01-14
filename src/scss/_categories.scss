@@ -1,10 +1,19 @@
-.categories {
-  grid-row: 1 / span 2;
-
+.category-big {
+  padding: 3rem;
   .btn-cat {
     padding: 0.4rem;
   }
   .selected {
     background-color: $color-secondary-light;
+  }
+}
+
+.category-small {
+  padding: 3rem;
+  .btn-cat {
+    padding: 0.4rem;
+  }
+  .selected {
+    background-color: $color-secondary-dark;
   }
 }

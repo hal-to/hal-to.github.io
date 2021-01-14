@@ -1,7 +1,12 @@
 .home {
-    background-color: $color-tertiary-dark;
+  background-color: $color-tertiary-dark;
 
-    display: grid;
-    grid-template-columns: 40rem 1fr;
-    align-content: start;
+  display: grid;
+  grid-template-columns: minmax(30rem, 30vw) 1fr;
+  grid-template-rows: auto 1fr;
+  justify-content: start;
+
+  @media only screen and (max-width: $bp-large) {
+    grid-template-columns: 1fr;
+  }
 }

@@ -66,7 +66,6 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
     setSelectedSmCat(tempSelectedSmCat);
   }
 
-
   function clearSmall() {
     const selectedSmallBtn = document.querySelectorAll(
       ".category-small .btn-cat.selected"
@@ -78,10 +77,10 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
   }
 
   function allSmall() {
-    const SmallButton = document.querySelectorAll(".category-small .btn-cat");
-    SmallButton.forEach((button) => {
+    const smallButton = document.querySelectorAll(".category-small .btn-cat");
+    smallButton.forEach((button) => {
       button.classList.add("selected");
-    });    
+    });
     setSelectedSmCat(smallCats);
   }
 
@@ -91,14 +90,14 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
     if (e.target.classList.contains("selected")) {
       tempSelectedSmCat.delete(smallCat);
     } else {
-      tempSelectedSmCat.add(smallCat);      
+      tempSelectedSmCat.add(smallCat);
     }
     e.target.classList.toggle("selected");
     setSelectedSmCat(tempSelectedSmCat);
   }
 
   return (
-    <section className="categories">
+    <>
       <div className="category-big">
         <h2>카테고리(대)</h2>
         <button onClick={clearBig}>Clear</button>
@@ -114,12 +113,16 @@ const Categories = ({ videos, selectedSmCat, setSelectedSmCat }) => {
         <button onClick={clearSmall}>Clear</button>
         <button onClick={allSmall}>Select All</button>
         {Array.from(smallCats).map((smallCategory) => (
-          <button key={smallCategory} onClick={toggleSmall} className="btn-cat selected">
+          <button
+            key={smallCategory}
+            onClick={toggleSmall}
+            className="btn-cat selected"
+          >
             {smallCategory}
           </button>
         ))}
       </div>
-    </section>
+    </>
   );
 };
 
