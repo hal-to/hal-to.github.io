@@ -1,3 +1,10 @@
 .categories {
-    grid-row: 1 / span 2;
+  grid-row: 1 / span 2;
+
+  .btn-cat {
+    padding: 0.4rem;
+  }
+  .selected {
+    background-color: $color-secondary-light;
+  }
 }
