@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import VideoCard from "./VideoCard";
 
 const Contents = ({ selectedSmCat, videos }) => {
   const [filteredVideos, setFilteredVideos] = useState([]);
@@ -23,12 +24,12 @@ const Contents = ({ selectedSmCat, videos }) => {
 
   return (
     <section className="contents">
-      <h2>contents</h2>
-      {filteredVideos.map((video) => (
-        <div>
-          <a href={video.link} target="_blank">{video.title}</a>
-        </div>
-      ))}
+      <p>{filteredVideos.length} videos</p>
+      <div className="content-container">
+        {filteredVideos.map((video) => (
+          <VideoCard key={video.num} video={video} />
+        ))}
+      </div>
     </section>
   );
 };

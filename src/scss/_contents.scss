@@ -10,3 +10,25 @@
     grid-column: auto;
   }
 }
+
+.content-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 35rem));
+  justify-content: space-evenly;
+  grid-gap: 2rem;
+}
+
+.video-card {
+  background-color: $color-white;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+
+  &--img {
+    width: 100%;
+  }
+
+  &--link {
+    display: block;
+  }
+}
