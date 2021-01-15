@@ -7,13 +7,26 @@ const VideoCard = ({ video }) => {
         src={`http://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
         className="video-card--img"
       />
-      <h3 className="heading-3 video-card--title">{video.title}</h3>
-      <div>{video.cat_big}</div>
-      <div>{video.cat_sm_list.join(", ")}</div>
-      <div>{video.date}</div>
-      <a className="video-card--link" href={video.link}>
-        link
-      </a>
+      <div className="video-card--detail">
+        <div className="video-card--cat-info">
+          <div>
+            <span className="video-card--cat-big">{video.cat_big}</span>
+            {video.cat_sm_list.map((catSmall) => (
+              <span className="video-card--cat-small">{catSmall}</span>
+            ))}
+          </div>
+          <div className="video-card--date">{video.date}</div>
+        </div>
+        <h4 className="heading-4 video-card--title">{video.title}</h4>
+        <button className="btn-card video-card--summary">detail</button>
+        <a
+          className="btn-card video-card--link"
+          href={video.link}
+          target="_blank"
+        >
+          Youtube &rarr;
+        </a>
+      </div>
     </div>
   );
 };

@@ -31,6 +31,12 @@
   }
 }
 
+.heading-4 {
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: $color-bg-blue;
+}
+
 .btn-cat {
   font-weight: 300;
   background-color: $color-primary-dark;
@@ -134,5 +140,36 @@
   }
   &--20.btn-cat--selected {
     border-bottom: 3px solid #ffb6b6;
+  }
+}
+
+.btn-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  background-color: $color-primary-dark;
+  color: #fff;
+  border: none;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  align-items: center;
+  transition: all 0.1s;
+
+  &:hover {
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-0.2rem);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(0.1rem);
   }
 }
