@@ -156,7 +156,7 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
   return (
     <>
       <div className="category-big">
-        <h2>카테고리(대)</h2>
+        <h3 className="heading-2">카테고리(대)</h3>
         <button onClick={clearBig}>Clear</button>
         <button onClick={allBig}>Select All</button>
         {Object.keys(categories).map((catBig) => (
@@ -170,7 +170,7 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
         ))}
       </div>
       <div className="category-small">
-        <h2>카테고리(소)</h2>
+        <h3 className="heading-2">카테고리(소)</h3>
         <button onClick={clearSmall}>Clear</button>
         <button onClick={allSmall}>Select All</button>
         {targetCats.map((targetCat, i) => (

@@ -39,3 +39,7 @@ html {
   box-sizing: border-box;
   font-size: 62.5%; /* 유저가 브라우저 폰트 사아즈를 바꾼 경우도 고려해야 함. 100% 하면 16px. 10px으로 맞추고 싶음 */
 }
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
