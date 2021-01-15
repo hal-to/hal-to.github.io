@@ -9,6 +9,7 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
   //   {
   //     value: "small_category",
   //     catBig: "big_category",
+  //     colorIdx: 1,
   //     selected: true,
   //   },
   // ];
@@ -40,13 +41,14 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
 
     const tempSelectedCat = new Map();
     const tempTargetCats = [];
-    for (const [catBig, smallCategoryList] of Object.entries(categories)) {
+    for (const [catBig, categoryObj] of Object.entries(categories)) {
       const tempSmallSet = new Set();
-      smallCategoryList.forEach((small) => {
+      categoryObj.catSmallList.forEach((small) => {
         tempSmallSet.add(small);
         tempTargetCats.push({
           value: small,
           catBig: catBig,
+          colorIdx: categoryObj.colorIdx,
           selected: true,
         });
       });
@@ -69,13 +71,15 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
         (targetCat) => targetCat.catBig !== catBig
       );
     } else {
-      const tempSmallSet = new Set(categories[catBig]);
+      const categoryObj = categories[catBig];
+      const tempSmallSet = new Set(categoryObj.catSmallList);
       tempSelectedCat.set(catBig, tempSmallSet);
       tempAvailableCat.set(catBig, tempSmallSet);
       tempSmallSet.forEach((value) => {
         tempTargetCats.push({
           value: value,
           catBig: catBig,
+          colorIdx: categoryObj.colorIdx,
           selected: true,
         });
       });
@@ -156,7 +160,11 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
         <button onClick={clearBig}>Clear</button>
         <button onClick={allBig}>Select All</button>
         {Object.keys(categories).map((catBig) => (
-          <button key={catBig} onClick={toggleBig} className="btn-cat">
+          <button
+            key={catBig}
+            onClick={toggleBig}
+            className={`btn-cat btn-cat--${categories[catBig].colorIdx}`}
+          >
             {catBig}
           </button>
         ))}
@@ -170,7 +178,7 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
             key={i}
             index={i}
             onClick={toggleSmall}
-            className="btn-cat btn-cat--selected"
+            className={`btn-cat btn-cat--${targetCat.colorIdx} btn-cat--selected`}
             catbig={targetCat.catBig}
           >
             {targetCat.value}

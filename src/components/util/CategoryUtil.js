@@ -17,9 +17,13 @@ export function getCategories(videos) {
     }
   });
 
-  let catObj = {}
+  let catObj = {};
+  let i = 1;
   catMap.forEach((value, key, map) => {
-    catObj[key] = [...value];
-  })
+    catObj[key] = {
+      catSmallList: [...value],
+      colorIdx: i++,
+    };
+  });
   return catObj;
 }

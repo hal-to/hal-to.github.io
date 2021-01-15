@@ -22,15 +22,18 @@
   background-color: $color-primary-dark;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   font-size: 1.3rem;
-  margin: .3rem;
-  padding: .8rem;
+  margin: 0.3rem;
+  padding: 0.8rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 3px solid $color-primary-dark;
   cursor: pointer;
   transition: all 0.2s;
 
-  &:hover {    
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.8);
+  &:hover {
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
     transform: translateY(-0.2rem);
   }
 
@@ -38,8 +41,84 @@
     outline: none;
   }
 
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+    transform: translateY(0.1rem);
+  }
+
   &--selected {
     background-color: $color-secondary-light;
     color: $color-white;
+  }
+
+  &--1.btn-cat--selected {
+    border-bottom: 3px solid #f9ed69;
+  }
+
+  &--2.btn-cat--selected {
+    border-bottom: 3px solid #f08a5d;
+  }
+
+  &--3.btn-cat--selected {
+    border-bottom: 3px solid #b83b5e;
+  }
+
+  &--4.btn-cat--selected {
+    border-bottom: 3px solid #6a2c70;
+  }
+
+  &--5.btn-cat--selected {
+    border-bottom: 3px solid #ffb6b9;
+  }
+
+  &--6.btn-cat--selected {
+    border-bottom: 3px solid #fae3d9;
+  }
+
+  &--7.btn-cat--selected {
+    border-bottom: 3px solid #bbded6;
+  }
+
+  &--8.btn-cat--selected {
+    border-bottom: 3px solid #61c0bf;
+  }
+
+  &--9.btn-cat--selected {
+    border-bottom: 3px solid #d4a5a5;
+  }
+
+  &--10.btn-cat--selected {
+    border-bottom: 3px solid #ffecda;
+  }
+
+  &--11.btn-cat--selected {
+    border-bottom: 3px solid #f9ffea;
+  }
+  &--12.btn-cat--selected {
+    border-bottom: 3px solid #a6d0e4;
+  }
+  &--13.btn-cat--selected {
+    border-bottom: 3px solid #f7fbfc;
+  }
+  &--14.btn-cat--selected {
+    border-bottom: 3px solid #d6e6f2;
+  }
+  &--15.btn-cat--selected {
+    border-bottom: 3px solid #b9d7ea;
+  }
+  &--16.btn-cat--selected {
+    border-bottom: 3px solid #769fcd;
+  }
+  &--17.btn-cat--selected {
+    border-bottom: 3px solid #1fab89;
+  }
+  &--18.btn-cat--selected {
+    border-bottom: 3px solid #62d2a2;
+  }
+  &--19.btn-cat--selected {
+    border-bottom: 3px solid #d6c8ff;
+  }
+  &--20.btn-cat--selected {
+    border-bottom: 3px solid #ffb6b6;
   }
 }
