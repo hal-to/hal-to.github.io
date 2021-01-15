@@ -3,16 +3,16 @@ import Categories from "./ui/Categories";
 import Contents from "./ui/Contents";
 
 const Home = ({ videos }) => {
-  const [selectedSmCat, setSelectedSmCat] = useState(new Set());
+  const [selectedCat, setSelectedCat] = useState(new Map());
 
   return (
     <div className="home">
       <Categories
-        selectedSmCat={selectedSmCat}
-        setSelectedSmCat={setSelectedSmCat}
+        selectedCat={selectedCat}
+        setSelectedCat={setSelectedCat}
         videos={videos}
       />
-      <Contents selectedSmCat={selectedSmCat} videos={videos} />
+      <Contents selectedCat={selectedCat} videos={videos} />
     </div>
   );
 };

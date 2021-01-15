@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 
-const Contents = ({ selectedSmCat, videos }) => {
+const Contents = ({ selectedCat, videos }) => {
   const [filteredVideos, setFilteredVideos] = useState([]);
 
   useEffect(() => {
-    console.log(selectedSmCat);
+    console.log(selectedCat);
     const tempVideos = videos.filter((video) => {
-      for (let i = 0; i < video.cat_sm_list.length; i++) {
-        const cat = video.cat_sm_list[i];
-        if (selectedSmCat.has(cat)) {
-          return true;
-        }
+      const catBig = video.cat_big;
+      if (selectedCat.has(catBig)) {
+        const selectedSmCatSet = selectedCat.get(catBig);
+        const curCatSmSet = new Set(video.cat_sm_list);
+        const intersection = Array.from(selectedSmCatSet).filter((x) =>
+          curCatSmSet.has(x)
+        );
+        if (intersection.length > 0) return true;
       }
       return false;
     });
@@ -20,7 +23,7 @@ const Contents = ({ selectedSmCat, videos }) => {
     });
     console.log("tempVideos", tempVideos);
     setFilteredVideos(tempVideos);
-  }, [selectedSmCat, videos]);
+  }, [selectedCat, videos]);
 
   return (
     <section className="contents">
