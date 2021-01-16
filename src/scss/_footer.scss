@@ -1,4 +1,40 @@
-.footer {    
-    background-color: $color-secondary;
-    height: 20rem;
+.footer {
+  background-color: $color-secondary;
+  padding: 6rem;
+}
+
+.footer-nav {
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 2rem;
+  align-items: center;
+
+  &__link:link,
+  &__link:visited {
+    font-size: 1.4rem;
+    color: #fff;
+    text-decoration: none;
+    font-family: "Noto Sans KR", sans-serif;
+    text-align: center;
+    padding: 1.5rem;
+    display: block;
+    transition: all 0.2s;
+  }
+
+  &__link:hover,
+  &__link:active {
+    background-color: rgba(#fff, 0.05);
+    transform: translateY(-3px);
+  }
+}
+
+.copyright {
+  font-size: 1.2rem;
+  color: $color-grey-light-2;
+  margin: 0 auto;
+  margin-top: 6rem;
+  text-align: center;
+  width: 70%;
 }
