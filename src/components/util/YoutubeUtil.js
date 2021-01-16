@@ -45,6 +45,8 @@ export async function getVideos() {
         .split("+")
         .map((item) => item.trim());
       smallCategories = words;
+    } else {
+      smallCategories.push("미분류");
     }
 
     const titleCell = sheet.getCell(row, 3);
