@@ -12,7 +12,9 @@ const Header = ({ videos, setVideos }) => {
     setIsImporting(true);
     let remoteVideos = await getVideos();
     localStorage.setItem(VIDEOS_LS, JSON.stringify(remoteVideos));
-    localStorage.setItem(LAST_FETCH_DATE_LS, Date.now());
+    const now = new Date();
+    localStorage.setItem(LAST_FETCH_DATE_LS, now.getTime());
+    setLastFetchDate(now);
     setVideos(remoteVideos);
     setIsImporting(false);
   };
