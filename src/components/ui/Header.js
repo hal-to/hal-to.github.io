@@ -23,24 +23,29 @@ const Header = ({ videos, setVideos }) => {
     const lastFetchDateStr = localStorage.getItem(LAST_FETCH_DATE_LS) || "0";
     const lastFetchDateTemp = new Date(parseInt(lastFetchDateStr));
     setLastFetchDate(lastFetchDateTemp);
-    setVideos(localVideos);    
+    setVideos(localVideos);
   }, []);
 
   return (
     <header className="header">
       <div className="title">
-        <h1 className="heading-1 heading-1--light">할투 맵 0.1</h1>
-        <h2 className="heading-2 heading-2--light">애, 차, 개 out!!</h2>
+        <h1 className="heading-1">할투 맵 0.1</h1>
+        <h2 className="heading-2">애, 차, 개 out!!</h2>
       </div>
       <div className="header-nav">
-        <button>할투 영상</button>
-        <button>추천 사이트</button>
-        <button>어바웃</button>
-        <button onClick={loadAndSaveSheet}>갱신</button>
+        <button className="btn-text btn-text--header">할투 영상</button>
+        <button className="btn-text btn-text--header">추천 사이트</button>
+        <button className="btn-text btn-text--header">어바웃</button>
+        <button
+          className="btn-text btn-text--header"
+          onClick={loadAndSaveSheet}
+        >
+          갱신
+        </button>
         {isImporting ? (
-          <div>fetching...</div>
+          <div className="header-nav--info">fetching...</div>
         ) : (
-          <div>
+          <div className="header-nav--info">
             <p>{videos.length} videos are fetched</p>
             <p>last fetch: {lastFetchDate.toLocaleString()}</p>
           </div>

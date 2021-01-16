@@ -1,39 +1,24 @@
 .heading-1 {
   font-weight: 700;
-  font-size: 4rem;
-  &--light {
-    color: $color-grey-light-1;
-  }
-  &--dark {
-    color: $color-grey-dark-1;
-  }
+  font-size: 3rem;
+  color: $color-grey-light-1;
 }
 
 .heading-2 {
   font-weight: 400;
-  font-size: 3rem;
-  &--light {
-    color: $color-grey-light-2;
-  }
-  &--dark {
-    color: $color-grey-dark-2;
-  }
+  font-size: 2.5rem;
+  color: $color-bg-yellow;
 }
 
 .heading-3 {
-  font-weight: 300;
-  font-size: 2.5rem;
-  &--light {
-    color: $color-grey-light-2;
-  }
-  &--dark {
-    color: $color-grey-dark-2;
-  }
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: $color-secondary;
 }
 
 .heading-4 {
   font-weight: 400;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: $color-bg-blue;
 }
 
@@ -162,6 +147,42 @@
   &:hover {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
     transform: translateY(-0.2rem);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(0.1rem);
+  }
+}
+
+.btn-text {
+  font-weight: 700;
+  background-color: transparent;
+  padding: 0.8rem;
+  border: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  transition: all 0.1s;
+
+  &--category {
+    color: $color-secondary-light;
+  }
+
+  &--header {
+    font-size: 1.4rem;
+    color: $color-bg-yellow;
+  }
+
+  &:hover {
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    background-color: $color-secondary-light;
+    color: $color-white;
+    // transform: translateY(-0.2rem);
   }
 
   &:focus {

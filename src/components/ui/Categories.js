@@ -156,9 +156,17 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
   return (
     <>
       <div className="category-big">
-        <h3 className="heading-2">카테고리(대)</h3>
-        <button onClick={clearBig}>Clear</button>
-        <button onClick={allBig}>Select All</button>
+        <div className="category-nav">
+          <h3 className="heading-3">카테고리(대)</h3>
+          <div className="category-nav--menu">
+            <button className="btn-text btn-text--category" onClick={clearBig}>
+              Clear
+            </button>
+            <button className="btn-text btn-text--category" onClick={allBig}>
+              Select All
+            </button>
+          </div>
+        </div>
         {Object.keys(categories).map((catBig) => (
           <button
             key={catBig}
@@ -170,9 +178,20 @@ const Categories = ({ videos, selectedCat, setSelectedCat }) => {
         ))}
       </div>
       <div className="category-small">
-        <h3 className="heading-2">카테고리(소)</h3>
-        <button onClick={clearSmall}>Clear</button>
-        <button onClick={allSmall}>Select All</button>
+        <div className="category-nav">
+          <h3 className="heading-3">카테고리(소)</h3>
+          <div className="category-nav--menu">
+            <button
+              className="btn-text btn-text--category"
+              onClick={clearSmall}
+            >
+              Clear
+            </button>
+            <button className="btn-text btn-text--category" onClick={allSmall}>
+              Select All
+            </button>
+          </div>
+        </div>
         {targetCats.map((targetCat, i) => (
           <button
             key={i}
