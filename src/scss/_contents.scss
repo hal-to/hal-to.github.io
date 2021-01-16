@@ -26,8 +26,6 @@
   background-color: $color-white;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
   border-radius: 3px;
-  display: flex;
-  flex-direction: column;
 
   &__side {
     height: 36rem;
@@ -77,6 +75,10 @@
     justify-items: start;
   }
 
+  &__side--back &__detail {
+    height: 100%;
+  }
+
   &__cat-info {
     grid-column: 1 / -1;
     width: 100%;
@@ -119,5 +121,11 @@
     grid-column: 1 / -1;
     justify-self: start;
     align-self: center;
+    color: $color-secondary;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    white-space: pre-wrap;
+    line-height: 2.5;
   }
 }
