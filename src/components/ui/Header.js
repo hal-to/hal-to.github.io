@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getVideos } from "../util/YoutubeUtil";
 
 const Header = ({ videos, setVideos }) => {
@@ -36,8 +37,12 @@ const Header = ({ videos, setVideos }) => {
       </div>
       <div className="header-nav">
         <button className="btn-text btn-text--header">할투 영상</button>
-        <button className="btn-text btn-text--header">추천 사이트</button>
-        <button className="btn-text btn-text--header">어바웃</button>
+        <Link className="btn-text btn-text--header" to="/recommend">
+          커스텀 추천
+        </Link>
+        <Link className="btn-text btn-text--header" to="/about">
+          어바웃
+        </Link>
         <button
           className="btn-text btn-text--header"
           onClick={loadAndSaveSheet}
