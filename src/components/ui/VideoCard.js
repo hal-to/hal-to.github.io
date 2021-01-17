@@ -9,7 +9,7 @@ const VideoCard = ({ video }) => {
 
   return (
     <div className="video-card">
-      <div class="video-card__side video-card__side--front">
+      <div className="video-card__side video-card__side--front">
         <img
           src={`http://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
           className="video-card__img"
@@ -19,7 +19,9 @@ const VideoCard = ({ video }) => {
             <div>
               <span className="video-card__cat-big">{video.cat_big}</span>
               {video.cat_sm_list.map((catSmall) => (
-                <span className="video-card__cat-small">{catSmall}</span>
+                <span key={catSmall} className="video-card__cat-small">
+                  {catSmall}
+                </span>
               ))}
             </div>
             <div className="video-card--date">{video.date}</div>
@@ -33,7 +35,7 @@ const VideoCard = ({ video }) => {
           </a>
         </div>
       </div>
-      <div class="video-card__side video-card__side--back">
+      <div className="video-card__side video-card__side--back">
         <div className="video-card__detail">
           <h4 className="heading-4 video-card__title">{video.title}</h4>
           <pre className="video-card__summary">{video.summary}</pre>

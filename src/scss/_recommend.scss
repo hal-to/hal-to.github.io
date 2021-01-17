@@ -1,0 +1,40 @@
+.recommend {
+  display: grid;
+  grid-template-columns: minmax(30rem, 30vw) 1fr;
+  justify-content: start;
+
+  @media only screen and (max-width: $bp-large) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rec-side {
+  background-color: $color-primary;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+  }
+
+  &__text {
+    resize: none;
+    height: 10rem;
+  }
+
+  &__submit {
+    text-align: center;
+  }
+}
+
+.rec-contents {
+  background-color: $color-grey-light-1;
+  padding: 3rem;
+  min-height: 50rem;
+}
+
+.rec-input {
+  display: block;
+  height: 3rem;
+  width: 100%;
+}

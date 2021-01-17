@@ -20,7 +20,7 @@ function App() {
         <Route
           exact
           path="/recommend"
-          render={() => <Recommend videos={videos} />}
+          render={(props) => <Recommend {...props} videos={videos} />}
         />
         <Redirect to="/" />
       </Switch>
