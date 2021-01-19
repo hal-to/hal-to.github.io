@@ -36,7 +36,9 @@ const Header = ({ videos, setVideos }) => {
         <h2 className="heading-2">애, 차, 개 out!!</h2>
       </div>
       <div className="header-nav">
-        <button className="btn-text btn-text--header">할투 영상</button>
+        <Link className="btn-text btn-text--header" to="/">
+          카테고리별
+        </Link>
         <Link className="btn-text btn-text--header" to="/recommend">
           커스텀 추천
         </Link>

@@ -17,7 +17,6 @@ const Recommend = ({ videos, location }) => {
 
     // ex) ?1.첫 걸음 및 총 정리=468,218&2.영구 포트폴리오=348&3.갓환국님 현재 전략=443,445,446,447,461
     let tempQueryStr = decodeURI(location.search);
-    console.log("search", location.search);
     if (tempQueryStr === "") {
       tempQueryStr =
         "?1.첫 걸음 및 총 정리=468,218&2.영구 포트폴리오=348&3.갓환국님 현재 전략=443,445,446,447,461";
@@ -37,7 +36,7 @@ const Recommend = ({ videos, location }) => {
     setRecommendObj(tempRecommendObj);
   }, [videos, location.search]);
 
-  const urlPrefix = "https://mechurak.github.io/recommend";
+  const urlPrefix = "https://mechurak.github.io/halto-map/recommend";
 
   function handleInput(e) {
     const value = e.target.value;
