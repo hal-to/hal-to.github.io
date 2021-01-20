@@ -58,7 +58,7 @@ const Recommend = ({ videos, location }) => {
           className="rec-side__text"
           readOnly
           disabled
-          value={`${urlPrefix}${queryStr}`}
+          value={`${urlPrefix}${queryStr.replace(/ /g, "%20")}`}
         ></textarea>
         <Link
           className="btn-text btn-text--category rec-side__submit"
