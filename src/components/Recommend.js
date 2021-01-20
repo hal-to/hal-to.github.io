@@ -70,8 +70,8 @@ const Recommend = ({ videos, location }) => {
 
       <div className="rec-contents">
         {Object.keys(recommendObj).map((title) => (
-          <div key={title}>
-            <h2 className="heading-2">{title}</h2>
+          <div key={title} className="rec-subject">
+            <h2 className="heading-2 heading-2--dark">{title}</h2>
             <div className="content-container">
               {recommendObj[title].map((num) => (
                 <VideoCard key={num} video={videosObj[num]} />

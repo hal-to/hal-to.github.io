@@ -27,6 +27,10 @@
   }
 }
 
+.rec-subject:not(:first-of-type) {
+  margin-top: 8rem;
+}
+
 .rec-contents {
   background-color: $color-grey-light-1;
   padding: 3rem;
