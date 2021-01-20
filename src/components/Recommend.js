@@ -7,6 +7,7 @@ const Recommend = ({ videos, location }) => {
   const [videosObj, setVidoesObj] = useState({});
   const [recommendObj, setRecommendObj] = useState({});
   const [queryStr, setQueryStr] = useState("");
+  const [queryRowList, setQueryRowList] = useState([]);
 
   useEffect(() => {
     const tempVideosObj = {};
@@ -26,7 +27,14 @@ const Recommend = ({ videos, location }) => {
     const queryObj = queryString.parse(tempQueryStr);
     console.log(queryObj);
     const tempRecommendObj = {};
-    Object.keys(queryObj).forEach((title) => {
+    const tempQueryRowList = [];
+    Object.keys(queryObj).forEach((title, i) => {
+      tempQueryRowList.push({
+        index: i,
+        title: title,
+        numsStr: queryObj[title],
+      });
+
       const numsStr = queryObj[title];
       const nums = numsStr.split(",").map(Number);
       const filteredNums = nums.filter((x) => x in tempVideosObj);
@@ -34,25 +42,71 @@ const Recommend = ({ videos, location }) => {
     });
     console.log(tempRecommendObj);
     setRecommendObj(tempRecommendObj);
+    setQueryRowList(tempQueryRowList);
   }, [videos, location.search]);
 
   const urlPrefix = "https://mechurak.github.io/halto-map/recommend";
 
   function handleInput(e) {
     const value = e.target.value;
-    setQueryStr(value);
+    const index = e.target.getAttribute("index");
+    const isNums = e.target.getAttribute("isnums");
+    console.log(index, isNums, value);
+    const tempQueryRowList = [...queryRowList];
+    if (isNums === "true") {
+      tempQueryRowList[index].numsStr = value;
+    } else {
+      tempQueryRowList[index].title = value;
+    }
+
+    let tempQueryStr = "?";
+    tempQueryRowList.forEach((pair) => {
+      tempQueryStr += `${pair.title}=${pair.numsStr}&`;
+    });
+    tempQueryStr = tempQueryStr.slice(0, -1);
+    setQueryStr(tempQueryStr);
+    setQueryRowList(tempQueryRowList);
+  }
+
+  function handAddRowButton(e) {
+    const tempQueryRowList = [...queryRowList];
+    tempQueryRowList.push({
+      index: tempQueryRowList.length,
+      title: "",
+      numsStr: "",
+    });
+    setQueryRowList(tempQueryRowList);
   }
 
   return (
     <div className="recommend">
       <div className="rec-side">
-        <p>query string</p>
-        <input
-          className="rec-side__input"
-          type="text"
-          defaultValue={queryStr}
-          onChange={handleInput}
-        ></input>
+        <p>제목, 영상 번호(콤마로 구분)</p>
+        {queryRowList.map((row, i) => (
+          <div key={i} class="form-control">
+            <button index={row.index}>-</button>
+            <input
+              type="text"
+              index={row.index}
+              isnums="false"
+              placeholder="Enter title"
+              defaultValue={row.title}
+              onChange={handleInput}
+            />
+            <input
+              type="text"
+              index={row.index}
+              isnums="true"
+              placeholder="Enter numbers (ex. 468,218)"
+              defaultValue={row.numsStr}
+              onChange={handleInput}
+            />
+          </div>
+        ))}
+        <button className="btn-text" onClick={handAddRowButton}>
+          +
+        </button>
+        <br />
         <p>url</p>
         <textarea
           className="rec-side__text"
