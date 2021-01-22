@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getVideos } from "../util/YoutubeUtil";
+import Loading from "./Loading";
 
 const Header = ({ videos, setVideos }) => {
   const [isImporting, setIsImporting] = useState(false);
@@ -30,37 +31,40 @@ const Header = ({ videos, setVideos }) => {
   }, []);
 
   return (
-    <header className="header">
-      <div className="title">
-        <h1 className="heading-1">할투 맵 0.1</h1>
-        <h2 className="heading-2">애, 차, 개 out!!</h2>
-      </div>
-      <div className="header-nav">
-        <Link className="btn-text btn-text--header" to="/">
-          카테고리별
-        </Link>
-        <Link className="btn-text btn-text--header" to="/recommend">
-          커스텀 추천
-        </Link>
-        <Link className="btn-text btn-text--header" to="/about">
-          어바웃
-        </Link>
-        <button
-          className="btn-text btn-text--header"
-          onClick={loadAndSaveSheet}
-        >
-          갱신
-        </button>
-        {isImporting ? (
-          <div className="header-nav--info">fetching...</div>
-        ) : (
-          <div className="header-nav--info">
-            <p>{videos.length} videos are fetched</p>
-            <p>last fetch: {lastFetchDate.toLocaleString()}</p>
-          </div>
-        )}
-      </div>
-    </header>
+    <>
+      {isImporting ? <Loading /> : null}
+      <header className="header">
+        <div className="title">
+          <h1 className="heading-1">할투 맵 0.1</h1>
+          <h2 className="heading-2">애, 차, 개 out!!</h2>
+        </div>
+        <div className="header-nav">
+          <Link className="btn-text btn-text--header" to="/">
+            카테고리별
+          </Link>
+          <Link className="btn-text btn-text--header" to="/recommend">
+            커스텀 추천
+          </Link>
+          <Link className="btn-text btn-text--header" to="/about">
+            어바웃
+          </Link>
+          <button
+            className="btn-text btn-text--header"
+            onClick={loadAndSaveSheet}
+          >
+            갱신
+          </button>
+          {isImporting ? (
+            <div className="header-nav--info">fetching...</div>
+          ) : (
+            <div className="header-nav--info">
+              <p>{videos.length} videos are fetched</p>
+              <p>last fetch: {lastFetchDate.toLocaleString()}</p>
+            </div>
+          )}
+        </div>
+      </header>
+    </>
   );
 };
 
