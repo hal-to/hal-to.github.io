@@ -1,6 +1,6 @@
 .recommend {
   display: grid;
-  grid-template-columns: minmax(30rem, 30vw) 1fr;
+  grid-template-columns: 40rem 1fr;
   justify-content: start;
 
   @media only screen and (max-width: $bp-large) {

@@ -13,7 +13,7 @@
 
 .content-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 40rem));
+  grid-template-columns: repeat(auto-fill, 32rem);
   justify-content: space-evenly;
   grid-gap: 2rem;
 }
@@ -38,13 +38,13 @@
     backface-visibility: hidden;
 
     &--front {
+      display: flex;
+      flex-direction: column;
     }
 
     &--back {
       background-color: $color-bg-yellow;
       transform: rotateY(180deg);
-
-      padding: 1rem;
     }
   }
 
@@ -56,16 +56,9 @@
   }
 
   // Front side
-  &__img {
-    display: block;
-    width: 100%;
-    object-fit: cover;
-    object-position: bottom;
-  }
-
   &__detail {
     padding: 1rem;
-    height: 13rem;
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content 1fr 3.5rem;
