@@ -43,11 +43,11 @@ const Header = ({ videos, setVideos }) => {
     <>
       {isImporting ? <Loading /> : null}
       <header className="header">
-        <div className="title">
+        <div className="header__title">
           <h1 className="heading-1">할투 맵 0.1</h1>
           <h2 className="heading-2">애, 차, 개 out!!</h2>
         </div>
-        <div className="header-nav">
+        <div className="header__nav">
           <Link className="btn-text btn-text--header" to="/">
             카테고리별
           </Link>
@@ -64,9 +64,9 @@ const Header = ({ videos, setVideos }) => {
             갱신
           </button>
           {isImporting ? (
-            <div className="header-nav--info">fetching...</div>
+            <div className="header__nav--info">fetching...</div>
           ) : (
-            <div className="header-nav--info">
+            <div className="header__nav--info">
               <p>{videos.length} videos are fetched</p>
               <p>last fetch: {lastFetchDate.toLocaleString()}</p>
             </div>

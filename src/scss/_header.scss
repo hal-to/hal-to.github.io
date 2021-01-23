@@ -10,7 +10,22 @@
   padding: 3rem;
   grid-template-columns: 1fr max-content;
 
-  &-nav {
+  @media only screen and (max-width: $bp-small) {
+    height: 20rem;
+    background-size: auto 10rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr;
+    padding: 0.5rem;
+  }
+
+  &__title {
+    @media only screen and (max-width: $bp-small) {
+      grid-row: 2 / 3;
+    }
+  }
+
+  &__nav {
+    justify-self: end;
     &--info {
       color: $color-grey-light-2;
       text-align: right;
