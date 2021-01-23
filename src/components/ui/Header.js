@@ -28,6 +28,15 @@ const Header = ({ videos, setVideos }) => {
     const lastFetchDateTemp = new Date(parseInt(lastFetchDateStr));
     setLastFetchDate(lastFetchDateTemp);
     setVideos(localVideos);
+
+    // Fetch google sheet automatically according to lastFetchDate
+    const now = new Date();
+    const FOUR_DAYS_IN_MS = 1000 * 60 * 60 * 24 * 4;
+    const diffInMs = now - lastFetchDateTemp;
+    if (diffInMs > FOUR_DAYS_IN_MS) {
+      console.log("trigger fetch");
+      loadAndSaveSheet();
+    }
   }, []);
 
   return (
