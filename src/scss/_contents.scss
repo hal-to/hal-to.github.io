@@ -9,6 +9,10 @@
     grid-row: auto;
     grid-column: auto;
   }
+
+  &__count {
+    margin-bottom: 2rem;
+  }
 }
 
 .content-container {

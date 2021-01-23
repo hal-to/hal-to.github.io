@@ -6,28 +6,43 @@ const Contents = ({ selectedCat, videos }) => {
 
   useEffect(() => {
     console.log(selectedCat);
-    const tempVideos = videos.filter((video) => {
-      const catBig = video.cat_big;
-      if (selectedCat.has(catBig)) {
-        const selectedSmCatSet = selectedCat.get(catBig);
-        const curCatSmSet = new Set(video.cat_sm_list);
-        const intersection = Array.from(selectedSmCatSet).filter((x) =>
-          curCatSmSet.has(x)
-        );
-        if (intersection.length > 0) return true;
-      }
-      return false;
-    });
-    tempVideos.sort((a, b) => {
-      return b.num - a.num;
-    });
-    console.log("tempVideos", tempVideos);
-    setFilteredVideos(tempVideos);
+    if (selectedCat.size) {
+      const tempVideos = videos.filter((video) => {
+        const catBig = video.cat_big;
+        if (selectedCat.has(catBig)) {
+          const selectedSmCatSet = selectedCat.get(catBig);
+          const curCatSmSet = new Set(video.cat_sm_list);
+          const intersection = Array.from(selectedSmCatSet).filter((x) =>
+            curCatSmSet.has(x)
+          );
+          if (intersection.length > 0) return true;
+        }
+        return false;
+      });
+      tempVideos.sort((a, b) => {
+        return b.num - a.num;
+      });
+      console.log("tempVideos", tempVideos);
+      setFilteredVideos(tempVideos);
+    } else {
+      let tempVideos = [...videos];
+      tempVideos.sort((a, b) => {
+        return b.num - a.num;
+      });
+      tempVideos = tempVideos.slice(0, 20);
+      console.log("tempVideos", tempVideos);
+      setFilteredVideos(tempVideos);
+    }
   }, [selectedCat, videos]);
 
   return (
     <section className="contents">
-      <p>{filteredVideos.length} videos</p>
+      {selectedCat.size ? (
+        <p className="contents__count">{filteredVideos.length} videos</p>
+      ) : (
+        <p className="contents__count">no selection. latest 20 videos</p>
+      )}
+
       <div className="content-container">
         {filteredVideos.map((video) => (
           <VideoCard key={video.num} video={video} />
