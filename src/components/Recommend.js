@@ -104,6 +104,12 @@ const Recommend = ({ videos, location }) => {
 
     document.execCommand("copy");
     document.body.removeChild(tempArea);
+
+    const copied = document.querySelector(".rec-side__copied");
+    copied.classList.add("show");
+    setTimeout(function () {
+      copied.classList.remove("show");
+    }, 1500);
   }
 
   return (
@@ -111,7 +117,7 @@ const Recommend = ({ videos, location }) => {
       <div className="rec-side">
         <p>제목, 영상 번호(콤마로 구분)</p>
         {queryRowList.map((row, i) => (
-          <div key={i} class="form-control">
+          <div key={i} className="form-control">
             <button
               index={row.index}
               className="form-control__btn"
@@ -144,12 +150,15 @@ const Recommend = ({ videos, location }) => {
         </button>
         <br />
         <p>url</p>
-        <textarea
-          className="rec-side__text"
-          readOnly
-          disabled
-          value={`${urlPrefix}${queryStr.replace(/ /g, "%20")}`}
-        ></textarea>
+        <div className="rec-side__text-div">
+          <textarea
+            className="rec-side__text"
+            readOnly
+            disabled
+            value={`${urlPrefix}${queryStr.replace(/ /g, "%20")}`}
+          ></textarea>
+          <p className="rec-side__copied">copied!</p>
+        </div>
         <div className="button-container">
           <button className="form-control__btn" onClick={copy}>
             copy
