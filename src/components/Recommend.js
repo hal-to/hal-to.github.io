@@ -8,6 +8,7 @@ const Recommend = ({ videos, location }) => {
   const [recommendObj, setRecommendObj] = useState({});
   const [queryStr, setQueryStr] = useState("");
   const [queryRowList, setQueryRowList] = useState([]);
+  const [rowIdx, setRowIdx] = useState(0);
 
   useEffect(() => {
     const tempVideosObj = {};
@@ -25,40 +26,31 @@ const Recommend = ({ videos, location }) => {
     setQueryStr(tempQueryStr);
 
     const queryObj = queryString.parse(tempQueryStr);
-    console.log(queryObj);
+    console.log("queryObj", queryObj);
     const tempRecommendObj = {};
     const tempQueryRowList = [];
+    let tempRowIdx = rowIdx;
     Object.keys(queryObj).forEach((title, i) => {
       tempQueryRowList.push({
-        index: i,
+        index: tempRowIdx,
         title: title,
         numsStr: queryObj[title],
       });
+      tempRowIdx++;
 
       const numsStr = queryObj[title];
       const nums = numsStr.split(",").map(Number);
       const filteredNums = nums.filter((x) => x in tempVideosObj);
       tempRecommendObj[title] = filteredNums;
     });
-    console.log(tempRecommendObj);
+    setRowIdx(tempRowIdx);
     setRecommendObj(tempRecommendObj);
     setQueryRowList(tempQueryRowList);
   }, [videos, location.search]);
 
   const urlPrefix = "https://mechurak.github.io/halto-map/recommend";
 
-  function handleInput(e) {
-    const value = e.target.value;
-    const index = e.target.getAttribute("index");
-    const isNums = e.target.getAttribute("isnums");
-    console.log(index, isNums, value);
-    const tempQueryRowList = [...queryRowList];
-    if (isNums === "true") {
-      tempQueryRowList[index].numsStr = value;
-    } else {
-      tempQueryRowList[index].title = value;
-    }
-
+  function updateText(tempQueryRowList) {
     let tempQueryStr = "?";
     tempQueryRowList.forEach((row) => {
       if (row.title !== "" && row.numsStr !== "") {
@@ -67,29 +59,53 @@ const Recommend = ({ videos, location }) => {
     });
     tempQueryStr = tempQueryStr.slice(0, -1);
     setQueryStr(tempQueryStr);
+  }
+
+  function handleInput(e) {
+    const value = e.target.value;
+    const index = e.target.getAttribute("index");
+    const isNums = e.target.getAttribute("isnums");
+    const tempQueryRowList = [...queryRowList];
+    let i = 0;
+    for (i = 0; i < tempQueryRowList.length; i++) {
+      if (tempQueryRowList[i].index == index) {
+        break;
+      }
+    }
+
+    if (isNums === "true") {
+      tempQueryRowList[i].numsStr = value;
+    } else {
+      tempQueryRowList[i].title = value;
+    }
+
     setQueryRowList(tempQueryRowList);
+    updateText(tempQueryRowList);
   }
 
   function addRow(e) {
     const tempQueryRowList = [...queryRowList];
     tempQueryRowList.push({
-      index: tempQueryRowList.length,
+      index: rowIdx,
       title: "",
       numsStr: "",
     });
+    setRowIdx(rowIdx + 1);
     setQueryRowList(tempQueryRowList);
   }
 
   function removeRow(e) {
     const index = e.target.getAttribute("index");
-    console.log(index);
     const tempQueryRowList = [...queryRowList];
-    tempQueryRowList.splice(index, 1);
-    console.log(tempQueryRowList);
-    tempQueryRowList.forEach((row, i) => {
-      row.index = i;
-    });
+    let i = 0;
+    for (i = 0; i < tempQueryRowList.length; i++) {
+      if (tempQueryRowList[i].index == index) {
+        break;
+      }
+    }
+    tempQueryRowList.splice(i, 1);
     setQueryRowList(tempQueryRowList);
+    updateText(tempQueryRowList);
   }
 
   function copy(e) {
@@ -117,7 +133,7 @@ const Recommend = ({ videos, location }) => {
       <div className="rec-side">
         <p>제목, 영상 번호(콤마로 구분)</p>
         {queryRowList.map((row, i) => (
-          <div key={i} className="form-control">
+          <div key={row.index} className="form-control">
             <button
               index={row.index}
               className="form-control__btn"
