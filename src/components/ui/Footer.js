@@ -24,7 +24,8 @@ const Footer = () => {
         </li>
       </ul>
       <p className="copyright">
-        &copy; Copyright 2021 by 일편단씸. 갓환국님의 영상과 자료들입니다.
+        &copy; Copyright 2021 by 일편단씸. 내용물은 모두 갓환국님의 영상과
+        자료들입니다.
       </p>
     </footer>
   );
