@@ -32,3 +32,31 @@
     }
   }
 }
+
+.quotation {
+  transform: translateY(-100%);
+  opacity: 0;
+
+  &--animation {
+    animation: text-flying 5s 1 ease-in-out;
+  }
+}
+
+@keyframes text-flying {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  10%,
+  50%,
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
