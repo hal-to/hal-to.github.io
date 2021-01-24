@@ -1,9 +1,61 @@
 import React from "react";
 
 const VideoCard = ({ video }) => {
+  // Particle. Reference: https://css-tricks.com/playing-with-particles-using-the-web-animations-api/
+  function pop(e) {
+    for (let i = 0; i < 15; i++) {
+      createParticle(e.clientX, e.clientY, i);
+    }
+  }
+  function createParticle(x, y, i) {
+    // Create a custom particle element
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
+    const type = i % 3;
+    particle.classList.add(`particle--${type + 1}`);
+    document.body.appendChild(particle);
+
+    let width = Math.floor(Math.random() * 30 + 25);
+    let height = width;
+    let destinationX = (Math.random() - 0.5) * 400;
+    let destinationY = (Math.random() - 0.5) * 400;
+    let rotation = Math.random() * 520;
+    let delay = Math.random() * 200;
+
+    particle.style.width = `${width}px`;
+    particle.style.height = `${height}px`;
+
+    const animation = particle.animate(
+      [
+        {
+          transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(0deg)`,
+          opacity: 1,
+        },
+        {
+          transform: `translate(-50%, -50%) translate(${x + destinationX}px, ${
+            y + destinationY
+          }px) rotate(${rotation}deg)`,
+          opacity: 0,
+        },
+      ],
+      {
+        duration: Math.random() * 1000 + 1500,
+        easing: "cubic-bezier(0, .9, .57, 1)",
+        delay: delay,
+      }
+    );
+
+    // When the animation is finished, remove the element from the DOM
+    animation.onfinish = () => {
+      particle.remove();
+    };
+  }
+
   function flip(e) {
     const videoCard = e.target.parentElement.parentElement.parentElement;
-    // console.log(videoCard);
+    if (document.body.animate && !videoCard.classList.contains("flipped")) {
+      pop(e);
+    }
     videoCard.classList.toggle("flipped");
   }
 
