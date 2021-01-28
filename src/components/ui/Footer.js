@@ -22,6 +22,15 @@ const Footer = () => {
             투자 자료 모음 (구글 시트)
           </a>
         </li>
+        <li className="footer-nav__item">
+          <a
+            href="https://github.com/hal-to/hal-to.github.io"
+            target="_blank"
+            className="footer-nav__link"
+          >
+            소스(Github)
+          </a>
+        </li>
       </ul>
       <p className="copyright">
         &copy; Copyright 2021 by 일편단씸. 내용물은 모두 갓환국님의 영상과
