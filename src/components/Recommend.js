@@ -48,7 +48,7 @@ const Recommend = ({ videos, location }) => {
     setQueryRowList(tempQueryRowList);
   }, [videos, location.search]);
 
-  const urlPrefix = "https://mechurak.github.io/halto-map/recommend";
+  const urlPrefix = "https://hal-to.github.io/recommend";
 
   function updateText(tempQueryRowList) {
     let tempQueryStr = "?";
