@@ -64,6 +64,7 @@ const VideoCard = ({ video }) => {
       <div className="video-card__side video-card__side--front">
         <img
           src={`http://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
+          alt="thumbnail"
           className="video-card__img"
         />
         <div className="video-card__detail">
@@ -82,7 +83,12 @@ const VideoCard = ({ video }) => {
           <button className="btn-card" onClick={flip}>
             detail
           </button>
-          <a className="btn-card" href={video.link} target="_blank">
+          <a
+            className="btn-card"
+            href={video.link}
+            target="_blank"
+            rel="noreferrer"
+          >
             Youtube &rarr;
           </a>
         </div>
@@ -94,7 +100,12 @@ const VideoCard = ({ video }) => {
           <button className="btn-card" onClick={flip}>
             back
           </button>
-          <a className="btn-card" href={video.link} target="_blank">
+          <a
+            className="btn-card"
+            href={video.link}
+            target="_blank"
+            rel="noreferrer"
+          >
             Youtube &rarr;
           </a>
         </div>

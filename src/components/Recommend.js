@@ -63,17 +63,17 @@ const Recommend = ({ videos, location }) => {
 
   function handleInput(e) {
     const value = e.target.value;
-    const index = e.target.getAttribute("index");
-    const isNums = e.target.getAttribute("isnums");
+    const indexStr = e.target.getAttribute("index");
+    const isNumsStr = e.target.getAttribute("isnums");
     const tempQueryRowList = [...queryRowList];
     let i = 0;
     for (i = 0; i < tempQueryRowList.length; i++) {
-      if (tempQueryRowList[i].index == index) {
+      if (tempQueryRowList[i].index === parseInt(indexStr)) {
         break;
       }
     }
 
-    if (isNums === "true") {
+    if (isNumsStr === "true") {
       tempQueryRowList[i].numsStr = value;
     } else {
       tempQueryRowList[i].title = value;
@@ -95,11 +95,11 @@ const Recommend = ({ videos, location }) => {
   }
 
   function removeRow(e) {
-    const index = e.target.getAttribute("index");
+    const indexStr = e.target.getAttribute("index");
     const tempQueryRowList = [...queryRowList];
     let i = 0;
     for (i = 0; i < tempQueryRowList.length; i++) {
-      if (tempQueryRowList[i].index == index) {
+      if (tempQueryRowList[i].index === parseInt(indexStr)) {
         break;
       }
     }
