@@ -26,20 +26,3 @@ $bp-largest: 75em; // 1200px (1200/16 = 75)
 $bp-large: 62.5em; // 1000px
 $bp-medium: 50em; // 800px
 $bp-small: 37.5em; // 600px
-
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit; /* 다른 거 끼워 넣을 때 좋음 */
-}
-
-html {
-  box-sizing: border-box;
-  font-size: 62.5%; /* 유저가 브라우저 폰트 사아즈를 바꾼 경우도 고려해야 함. 100% 하면 16px. 10px으로 맞추고 싶음 */
-}
-
-body {
-  font-family: "Noto Sans KR", sans-serif;
-}

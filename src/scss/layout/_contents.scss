@@ -1,0 +1,23 @@
+.contents {
+  background-color: $color-grey-light-1;
+  padding: 3rem;
+  grid-row: 1 / span 2;
+  grid-column: 2 / -1;
+  min-height: 50rem;
+
+  @media only screen and (max-width: $bp-large) {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  &__count {
+    margin-bottom: 2rem;
+  }
+}
+
+.content-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 32rem);
+  justify-content: space-evenly;
+  grid-gap: 2rem;
+}
