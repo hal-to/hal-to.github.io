@@ -8,3 +8,12 @@
     margin-bottom: 4rem;
   }
 }
+
+.contributor {
+  list-style: none;
+
+  &__link {
+    font-size: 1.4rem;
+    text-decoration: none;
+  }
+}

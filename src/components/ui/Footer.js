@@ -31,13 +31,12 @@ const Footer = () => {
             rel="noreferrer"
             className="footer-nav__link"
           >
-            소스(Github)
+            소스코드 (Github)
           </a>
         </li>
       </ul>
       <p className="copyright">
-        &copy; Copyright 2021 by 일편단씸. 내용물은 모두 갓환국님의 영상과
-        자료들입니다.
+        &copy; 2021 할 수 있다! 알고 투자 강환국
       </p>
     </footer>
   );
