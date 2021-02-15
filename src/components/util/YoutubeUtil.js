@@ -9,9 +9,6 @@ function getYoutubeId(url) {
   }
 }
 
-// It's all right. It's restricted by domain.
-const K = "AIzaSyA0_136gWrkqUfV5t25yi4rKWQpEpXDl9c";
-
 // "https://docs.google.com/spreadsheets/d/1wPR2CCImrk6Qb8jwlGy2_RfDJu5PwY18POrJ3UR1sts/edit?fbclid=IwAR3XbNYzBo6ITLkMG-C_JXc7-IfUIIFxyFb1mDIZuPjUQKD0afaXNiCJ2As#gid=1577519440";
 const SHEET_ID = "1wPR2CCImrk6Qb8jwlGy2_RfDJu5PwY18POrJ3UR1sts"; // https://han.gl/49BQk
 
@@ -23,7 +20,7 @@ export async function getVideos() {
 
   // Initialize the sheet - doc ID is the long id in the sheets URL
   const doc = new GoogleSpreadsheet(SHEET_ID);
-  doc.useApiKey(K);
+  doc.useApiKey(process.env.REACT_APP_API_KEY);
 
   await doc.loadInfo(); // loads document properties and worksheets
   console.log(doc.title);

@@ -47,8 +47,9 @@ const Recommend = ({ videos, location }) => {
     setRecommendObj(tempRecommendObj);
     setQueryRowList(tempQueryRowList);
   }, [videos, location.search]);
-
-  const urlPrefix = "https://hal-to.github.io/recommend";
+  
+  console.log("window.location", window.location);
+  const urlPrefix = window.location.origin + window.location.pathname;  
 
   function updateText(tempQueryRowList) {
     let tempQueryStr = "?";
